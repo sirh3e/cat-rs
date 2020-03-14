@@ -1,2 +1,6 @@
 #!/bin/bash
-diff <(./target/debug/cat-rs ./src/main.rs ./src/main.rs) <(cat ./src/main.rs ./src/main.rs)
+
+PROGRAMM="./target/debug/cat-rs"
+SOURCE_FILE="./src/main.rs"
+
+diff <($PROGRAMM $SOURCE_FILE $SOURCE_FILE) <(cat $SOURCE_FILE $SOURCE_FILE)
