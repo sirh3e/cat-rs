@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -eu
+set -pipeline
 
 PROGRAMM="./target/debug/cat-rs"
 SOURCE_FILE="./src/main.rs"
