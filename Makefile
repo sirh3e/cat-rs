@@ -25,7 +25,7 @@ clean:
 
 .PHONY: release
 release:
-	$(CARGO) build --release
+	$(CARGO) build --$@
 
 .PHONY: diff
 diff:
