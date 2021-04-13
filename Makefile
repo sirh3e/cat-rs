@@ -1,26 +1,32 @@
-compiler=cargo
+CARGO	:= cargo
 
-source_file=./src/main.rs
+.PHONY: all
+all: fmt test run
 
 .PHONY: run
+run:
+	$(CARGO) $@
 
-run: test
-	$(compiler) $@
+.PHONY: build
+build:
+	$(CARGO) $@
 
-build: test
-	$(compiler) $@
+.PHONY: test
+test:
+	$(CARGO) $@
 
-test: fmt
-	$(compiler) $@
+.PHONY: fmt
+fmt:
+	$(CARGO) $@
 
-fmt: clean
-	$(compiler) $@
-
+.PHONY: clean
 clean:
-	$(compiler) $@
+	$(CARGO) $@
 
+.PHONY: release
 release:
-	$(compiler) build --release
+	$(CARGO) build --release
 
+.PHONY: diff
 diff:
 	./diff.sh
