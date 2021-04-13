@@ -1,20 +1,14 @@
 use std::env;
 use std::fs::File;
-use std::io::{Read, Write};
+use std::io::{stdout, Read, Result, Write};
 
-fn main() -> std::io::Result<()> {
-    let mut bytes = vec![];
+fn main() -> Result<()> {
+    let mut buffer = vec![];
 
-    let args: Vec<String> = env::args().collect();
-    let file_paths = Vec::from(&args[1..]);
+    env::args().skip(1).for_each(|path| {
+        File::open(path).map(|mut file| file.read_to_end(&mut buffer));
+    });
 
-    for file_path in file_paths.iter() {
-        let mut buffer: Vec<u8> = Vec::new();
-
-        File::open(file_path)?.read_to_end(&mut buffer)?;
-        bytes.append(&mut buffer)
-    }
-
-    if let Ok(_) = std::io::stdout().write_all(&bytes) {}
+    stdout().write_all(&buffer)?;
     Ok(())
 }
