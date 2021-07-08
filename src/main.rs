@@ -1,6 +1,8 @@
-use std::env;
-use std::fs::File;
-use std::{io, io::Result};
+use std::{
+    env,
+    fs::File,
+    io::{self, Result},
+};
 
 fn main() -> Result<()> {
     let stdout = io::stdout();
